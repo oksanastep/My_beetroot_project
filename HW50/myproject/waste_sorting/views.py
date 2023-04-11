@@ -17,7 +17,12 @@ from django.contrib.auth import get_user_model
 class HomePageView(TemplateView):
 
     def get(self, request):
-        return render(request, template_name='home.html')
+        containers = WasteContainer.objects.all()
+        context={
+            'letters': 'abcd',
+            'containers': containers
+        }
+        return render(request, template_name='home.html', context=context)
 
 
 class CommentsView(ListView, CreateView):

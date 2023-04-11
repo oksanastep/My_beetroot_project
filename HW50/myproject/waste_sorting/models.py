@@ -37,6 +37,7 @@ class NameField(models.CharField):
 
 class WasteContainer(models.Model):
     cont_type = models.CharField(max_length=100, unique=True)
+    img = models.ImageField(upload_to='static/img', height_field=None, width_field=None, max_length=100)
 
     class Meta:
         ordering = ('cont_type',)

@@ -10,115 +10,8 @@
             integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
 
             crossorigin="anonymous"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        body, html {
-            background-image: url(https://www.inria.fr/sites/default/files/styles/bloc_grid/public/2021-03/AdobeStock_230582154%20%281%29.jpeg?itok=72Mi1sQz);
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-size: cover;
-
-        }
-
-        .search_form {
-            display: block;
-            width: 100%;
-            background-color: rgba(0, 0, 0, .5);
-            background-size: cover;
-        }
-
-        .search_section_inner {
-            display: block;
-            max-width: 775px;
-            margin: 0 auto;
-            padding: 1.75em 1.5em;
-        }
-
-        h2 {
-            font-size: 2.0em;
-            color: #eeeeee;
-
-        }
-
-        .search_wrap input[type=text] {
-            padding: 10px;
-            font-size: 17px;
-            border: 1px solid grey;
-            float: left;
-            width: 80%;
-            background: #f1f1f1;
-        }
-
-        .search_wrap::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        .abc_links {
-            margin: 0.75em 0 0;
-        }
-
-        .alphabet {
-            padding-top: 0.75em;
-        }
-
-        .alphabet a {
-            color: #fff;
-            background: darkgreen;
-            display: inline-block;
-            margin: 0 0.2375em 0.52em 0;
-            text-decoration: none;
-            padding: 0.1em 0.3em;
-            border: 1px solid rgba(255, 255, 255, 0.75);
-            min-width: 2.05em;
-            text-align: center;
-            transition: all .2s ease-in-out;
-        }
-
-        .waste_form {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            margin: 30px
-        }
-
-        .column {
-            float: left;
-            width: 15%;
-            margin-bottom: 16px;
-            padding: 0 8px;
-        }
-
-        .container {
-            padding: 0 16px;
-        }
-
-        .container::after, .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        .button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .button:hover {
-            background: lightblue;
-        }
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/styles.css' %}">
 </head>
 <body>
 <div class="search_form">
@@ -131,125 +24,29 @@
             </form>
             <div class="abc_links">
                 <div class="alphabet">
-                    <a>А</a>
-                    <a>Б</a>
-                    <a>В</a>
-                    <a>Г</a>
-                    <a>Ґ</a>
-                    <a>Д</a>
-                    <a>Е</a>
-                    <a>Є</a>
-                    <a>Ж</a>
-                    <a>З</a>
-                    <a>І</a>
-                    <a>Ї</a>
-                    <a>Й</a>
-                    <a>К</a>
-                    <a>Л</a>
-                    <a>М</a>
-                    <a>Н</a>
-                    <a>О</a>
-                    <a>П</a>
-                    <a>Р</a>
-                    <a>С</a>
-                    <a>Т</a>
-                    <a>У</a>
-                    <a>Ф</a>
-                    <a>Х</a>
-                    <a>Ц</a>
-                    <a>Ч</a>
-                    <a>Ш</a>
-                    <a>Щ</a>
-                    <a>Ю</a>
-                    <a>Я</a>
+                    {% for letter in letters %}
+                        <a href="{% url 'search_results' %}?q={{ letter }}">{{ letter }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% block body %}
-    <div class="row">
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://www.hyotykerays.fi/images/2019/12/02/muovi1.png" alt="Пластик" style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Пластик</button>
-                </p>
+
+    <div class="row-mine">
+    {% for container in containers %}
+        <div class="column">
+            <div class="waste_form">
+                <img src="{{ container.img }}" alt="{{ container.cont_type }}" style="width: 100%">
+                <div class="container">
+                    <p>
+                        <button class="button">{{ container.cont_type|title }}</button>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://www.hyotykerays.fi/images/2019/12/02/paperi1.png" alt="Папір" style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Папір</button>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://www.hyotykerays.fi/images/2019/12/02/lasi1.png" alt="Скло" style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Скло</button>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://www.hyotykerays.fi/images/2019/12/02/metalli1.png" alt="Метал" style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Метал</button>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://www.hyotykerays.fi/images/2019/12/02/bio1.png" alt="Біовідходи" style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Біовідходи</button>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://www.hyotykerays.fi/images/2019/12/02/kartonki1.png" alt="Картон" style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Картон</button>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://www.hyotykerays.fi/images/2019/12/02/sekajate1.png" alt="Змішане сміття"
-                 style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Змішане сміття</button>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="waste_form">
-            <img src="https://w7.pngwing.com/pngs/503/1007/png-transparent-home-appliance-household-goods-washing-machines-laundry-kitchen-household-technic.png"
-                 alt="Спеціальні пункти збору відходів" style="width: 100%">
-            <div class="container">
-                <p>
-                    <button class="button">Спеціальні пункти збору відходів</button>
-                </p>
-            </div>
-        </div>
+    {% endfor %}
     </div>
 {% endblock %}
 </body>
