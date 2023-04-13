@@ -46,6 +46,8 @@ class WasteContainer(models.Model):
         return self.cont_type
 
 
+
+
 class Waste(models.Model):
     waste_name = NameField(max_length=150)
     type = models.ManyToManyField(WasteContainer)

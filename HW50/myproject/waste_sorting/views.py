@@ -18,11 +18,31 @@ class HomePageView(TemplateView):
 
     def get(self, request):
         containers = WasteContainer.objects.all()
-        context={
-            'letters': 'abcd',
+        context = {
+            'letters': 'абвгґдеєжзіїйклмнопрстуфхцчшщюя',
             'containers': containers
         }
         return render(request, template_name='home.html', context=context)
+
+
+class SearchAlphabet(ListView):
+    model = Waste
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        results = Waste.objects.filter(Q(waste_name__startswith=query))
+        return results
+
+
+class SearchContainer(ListView):
+    model = Waste
+    template_name = 'search_container.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        results = WasteContainer.objects.filter(Q(cont_type__startswith=query))
+        return results
 
 
 class CommentsView(ListView, CreateView):

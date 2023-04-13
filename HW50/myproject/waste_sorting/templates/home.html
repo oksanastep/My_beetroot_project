@@ -25,7 +25,7 @@
             <div class="abc_links">
                 <div class="alphabet">
                     {% for letter in letters %}
-                        <a href="{% url 'search_results' %}?q={{ letter }}">{{ letter }}</a>
+                        <a href="{% url 'search_alphabet' %}?q={{ letter }}">{{ letter }}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -34,20 +34,20 @@
 </div>
 {% block body %}
 
-    <div class="row-mine">
+<div class="row-mine">
     {% for container in containers %}
         <div class="column">
-            <div class="waste_form">
+            <p class="waste_form">
                 <img src="{{ container.img }}" alt="{{ container.cont_type }}" style="width: 100%">
-                <div class="container">
+                    <div class="container">
                     <p>
                         <button class="button">{{ container.cont_type|title }}</button>
                     </p>
-                </div>
-            </div>
+                    </div>
         </div>
-    {% endfor %}
-    </div>
+</div>
+{% endfor %}
+</div>
 {% endblock %}
 </body>
 </html>

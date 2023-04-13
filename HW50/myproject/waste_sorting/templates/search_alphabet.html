@@ -24,9 +24,10 @@
     <h2 style="text-align:center">Результати пошуку</h2>
      {% for waste in object_list%}
     <br>
-    <p>{{waste.waste_name}}</p>
+    <p>{{waste.waste_name|title}}</p>
     <div class="waste_card">
-        <p>{% for type in waste.type.all|title%}{{ type|title }} {% endfor %}</p>
+        <p>{% for type in waste.type.all %}{{ type|title }} {% endfor %}</p>
     </div>
+
 {% endfor %}
 {% endblock body %}

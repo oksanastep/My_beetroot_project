@@ -21,12 +21,11 @@
     }
 </style>
 <div class="waste_column">
-    <h2 style="text-align:center">Результати пошуку</h2>
-     {% for waste in object_list%}
-    <br>
-    <p>{{waste.waste_name}}</p>
+    {% for container in object_list%}
     <div class="waste_card">
-        <p>{% for type in waste.type.all|title%}{{ type|title }} {% endfor %}</p>
+        <p>{{container.cont_type}}</p>
+    </div>
+    <p>{% for name in container.waste_name.all|title%}{{ waste_name|title }} {% endfor %}</p>
     </div>
 {% endfor %}
 {% endblock body %}
