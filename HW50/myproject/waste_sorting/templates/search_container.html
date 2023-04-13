@@ -20,12 +20,17 @@
         text-decoration: none;
     }
 </style>
-<div class="waste_column">
-    {% for container in object_list%}
-    <div class="waste_card">
-        <p>{{container.cont_type}}</p>
+<div class="wrapper">
+    <div class="container">
+        {{ container.type }}
     </div>
-    <p>{% for name in container.waste_name.all|title%}{{ waste_name|title }} {% endfor %}</p>
+    <div class="waste_column">
+        {% for waste in object_list %}
+        <div class="waste_card">
+            <p>{{waste.waste_name|title}}</p>
+        </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</div>
+
 {% endblock body %}

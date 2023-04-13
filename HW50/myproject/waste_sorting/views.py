@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
-from .models import WasteContainer, Waste, Comment
+from .models import Container, Waste, Comment
 from .forms import CommentForm, NewCommentForm, AboutYouForm, RegisterForm
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -17,7 +17,7 @@ from django.contrib.auth import get_user_model
 class HomePageView(TemplateView):
 
     def get(self, request):
-        containers = WasteContainer.objects.all()
+        containers = Container.objects.all()
         context = {
             'letters': 'абвгґдеєжзіїйклмнопрстуфхцчшщюя',
             'containers': containers
@@ -41,8 +41,15 @@ class SearchContainer(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        results = WasteContainer.objects.filter(Q(cont_type__startswith=query))
+        results = Waste.objects.filter(container=query)
+        # results = WasteContainer.objects.filter(Q(cont_type__startswith=query))
         return results
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        container = Container.objects.get(pk=self.request.GET.get('q'))
+        context.update({'container':container})
+        return context
 
 
 class CommentsView(ListView, CreateView):

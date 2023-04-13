@@ -5,9 +5,9 @@ from .forms import AuthenticationFormCustom
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
-    path("search-container", SearchContainer.as_view(), name="search_container"),
+    path("search-container/", SearchContainer.as_view(), name="search_container"),
     path("search-results/", SearchResultsView.as_view(), name="search_results"),
-    path("search=alphabet/", SearchAlphabet.as_view(), name="search_alphabet"),
+    path("search-alphabet/", SearchAlphabet.as_view(), name="search_alphabet"),
     path("comments/<str:id>/", CommentsView.as_view()),
     path('about_you/', AboutYouView.as_view()),
     path(

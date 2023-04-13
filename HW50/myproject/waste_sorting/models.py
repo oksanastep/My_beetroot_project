@@ -35,28 +35,26 @@ class NameField(models.CharField):
         return str(value).lower()
 
 
-class WasteContainer(models.Model):
-    cont_type = models.CharField(max_length=100, unique=True)
+class Container(models.Model):
+    type = models.CharField(max_length=100, unique=True)
     img = models.ImageField(upload_to='static/img', height_field=None, width_field=None, max_length=100)
 
     class Meta:
-        ordering = ('cont_type',)
+        ordering = ('type',)
 
     def __str__(self):
-        return self.cont_type
-
-
+        return self.type
 
 
 class Waste(models.Model):
-    waste_name = NameField(max_length=150)
-    type = models.ManyToManyField(WasteContainer)
+    name = NameField(max_length=150)
+    container = models.ManyToManyField(Container)
 
     class Meta:
-        ordering = ('waste_name',)
+        ordering = ('name',)
 
     def __str__(self):
-        return self.waste_name
+        return self.name
 
     def get_url(self):
         return reverse('waste_details', args=[self.id])

@@ -36,17 +36,16 @@
 
 <div class="row-mine">
     {% for container in containers %}
-        <div class="column">
-            <p class="waste_form">
-                <img src="{{ container.img }}" alt="{{ container.cont_type }}" style="width: 100%">
-                    <div class="container">
-                    <p>
-                        <button class="button">{{ container.cont_type|title }}</button>
-                    </p>
-                    </div>
-        </div>
-</div>
-{% endfor %}
+    <div class="column">
+        <p class="waste_form">
+            <img src="{{ container.img }}" alt="{{ container.type }}" style="width: 100%">
+                <div class="container">
+                <p>
+                    <a class="button" href="{% url 'search_container' %}?q={{ container.id }}">{{ container.type|title }}</a>
+                </p>
+                </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
 </body>

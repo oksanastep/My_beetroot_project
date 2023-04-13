@@ -1,18 +1,18 @@
 
 from django.contrib import admin
 
-from .models import WasteContainer, Waste, Comment, Profile
+from .models import Container, Waste, Comment, Profile
 
 
 class WasteContainerAdmin(admin.ModelAdmin):
-    list_display = ('cont_type',)
+    list_display = ('type',)
 
 
 class WasteAdmin(admin.ModelAdmin):
-    list_display = ('waste_name',)
+    list_display = ('name',)
 
 
-admin.site.register(WasteContainer, WasteContainerAdmin)
+admin.site.register(Container, WasteContainerAdmin)
 admin.site.register(Waste, WasteAdmin)
 admin.site.register(Comment)
 admin.site.register(Profile)
