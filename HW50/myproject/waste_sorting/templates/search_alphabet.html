@@ -23,10 +23,10 @@
 <div class="waste_column">
     <h2 style="text-align:center">Результати пошуку</h2>
      {% for waste in object_list%}
-    <br>
-    <p>{{waste.waste_name|title}}</p>
-    <div class="waste_card">
-        <p>{% for type in waste.type.all %}{{ type|title }} {% endfor %}</p>
+        <br>
+        <p>{{waste.name|title}}</p>
+        <div class="waste_card">
+            <p>{% for container in waste.container.all %}{{ container|title }} {% endfor %}</p>
     </div>
 
 {% endfor %}

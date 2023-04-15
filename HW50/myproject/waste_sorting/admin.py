@@ -1,7 +1,7 @@
 
 from django.contrib import admin
-
-from .models import Container, Waste, Comment, Profile
+from django.contrib.auth.admin import UserAdmin
+from .models import Container, Waste
 
 
 class WasteContainerAdmin(admin.ModelAdmin):
@@ -14,7 +14,8 @@ class WasteAdmin(admin.ModelAdmin):
 
 admin.site.register(Container, WasteContainerAdmin)
 admin.site.register(Waste, WasteAdmin)
-admin.site.register(Comment)
-admin.site.register(Profile)
+
+
+
 
 # Register your models here.

@@ -1,26 +1,21 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
-from .models import Container, Waste, Comment
-from .forms import CommentForm, NewCommentForm, AboutYouForm, RegisterForm
+from .models import Container, Waste
+from .forms import NewUserForm
 from django.db.models import Q
-from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required, permission_required
-from django.views import View
-from django.contrib.auth.models import Group
-from django.utils.decorators import method_decorator
-from rest_framework import viewsets, generics, pagination
-from rest_framework import permissions
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth import get_user_model
-
+from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 
 class HomePageView(TemplateView):
 
     def get(self, request):
         containers = Container.objects.all()
+        form = NewUserForm(request.POST)
         context = {
             'letters': 'абвгґдеєжзіїйклмнопрстуфхцчшщюя',
-            'containers': containers
+            'containers': containers,
+            'register_form': form
         }
         return render(request, template_name='home.html', context=context)
 
@@ -31,7 +26,7 @@ class SearchAlphabet(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        results = Waste.objects.filter(Q(waste_name__startswith=query))
+        results = Waste.objects.filter(Q(name__startswith=query))
         return results
 
 
@@ -48,79 +43,8 @@ class SearchContainer(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         container = Container.objects.get(pk=self.request.GET.get('q'))
-        context.update({'container':container})
+        context.update({'container': container})
         return context
-
-
-class CommentsView(ListView, CreateView):
-    model = Comment
-    allow_empty = True
-    queryset = Comment.objects.all()
-    paginate_by = 5
-    paginate_orphans = 3
-    context_object_name = 'comments'
-    page_kwarg = "page"
-    ordering = ['-date_created']
-    template_name = 'comments.html'
-
-    object = Comment()
-    form_class = NewCommentForm
-    success_url = reverse_lazy('comments')
-
-    def form_valid(self, form):
-        user = self.request.user
-        comment = form.save(commit=False)
-        comment.author = user
-        self.object = comment.save()
-        return super().form_valid(form)
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
-
-
-class AboutYouView(View):
-    def get(self, request):
-        return render(
-            request=request,
-            template_name='about_you.html',
-            context={
-                'form': AboutYouForm(),
-                'user': request.user
-            }
-        )
-
-    def post(self, request):
-        user = request.user
-        form = AboutYouForm(request.POST)
-
-        print(form)
-        return self.get(request)
-
-
-class RegisterView(UserPassesTestMixin, CreateView):
-    object = get_user_model()
-    form_class = RegisterForm
-    success_url = reverse_lazy('comments')
-    template_name = 'registration.html'
-
-    def test_func(self):
-        if self.request.user.is_anonymous:
-            print(self.request.user)
-            return True
-        else:
-            return False
-
-    def handle_no_permission(self):
-        return redirect(self.success_url)
-
-    def form_valid(self, form):
-        user = form.save(commit=False)
-        self.object = user.save()
-
-        my_group = Group.objects.get(name='regular_user')
-        my_group.user_set.add(user)
-
-        return super().form_valid(form)
 
 
 class SearchResultsView(ListView):
@@ -129,5 +53,42 @@ class SearchResultsView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        results = Waste.objects.filter(Q(waste_name__icontains=query))
+        results = Waste.objects.filter(Q(name__icontains=query))
         return results
+
+
+def register_request(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Регістрація пройшла успішно!")
+            return redirect("home")
+        messages.error(request, "Сталася помилка, невірна інформація")
+    form = NewUserForm()
+    return render(request=request, template_name="registration/register.html", context={"register_form": form})
+
+
+def login_request(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"Тепер Ви зареєстровані як {username}.")
+                return redirect("home")
+            else:
+                messages.error(request, "Невірний логін або пароль.")
+        else:
+            messages.error(request, "Невірний логін або пароль.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="registration/login.html", context={"login_form": form})
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "Ви успішно вийшли з облікового запису.")
+    return redirect("home")
