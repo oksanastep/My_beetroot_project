@@ -1,18 +1,20 @@
-{% extends "home.html" %}
-
-{% block content %}      
-
+{% load crispy_forms_filters %}
+{% load static %}
 {% load crispy_forms_tags %}
-
-<!--Login--> 
-<div class="container py-5">
-  <h1>Увійти в обліковий запис</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form|crispy }}
-    <button class="btn btn-primary" type="submit">Увійти</button>
-  </form>
-  <p class="text-center">Все ще не маєте облікового запису? <a href="/register">Створити обліковій запис</a>.</p>
+<link rel="stylesheet" href="{% static 'register/styles.css' %}">
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Увійти в обліковий запис</label>
+    <div class="login-form">
+        <div class="group">
+          <form method="POST">
+            {% csrf_token %}
+            {{ login_form|crispy }}
+            <button type="submit" class="button" >Увійти</button>
+          </form>
+           <p class="text-center">Все ще не зареєстровані? <a href="/register">Створити обліковий запис</a>.</p>
+        </div>
+    </div>
+  </div>
 </div>
 
-{% endblock %}

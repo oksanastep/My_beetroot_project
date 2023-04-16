@@ -25,7 +25,7 @@
             <div class="abc_links">
                 <div class="alphabet">
                     {% for letter in letters %}
-                        <a href="{% url 'search_alphabet' %}?q={{ letter }}">{{ letter }}</a>
+                        <a href="{% url 'search_alphabet' %}?q={{ letter }}">{{ letter|title }}</a>
                     {% endfor %}
                 </div>
             </div>

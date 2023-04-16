@@ -11,11 +11,12 @@ a{color:inherit;text-decoration:none}
 
 .login-wrap{
   width:100%;
+  height: 100%;
   margin:auto;
-  max-width:525px;
-  min-height:670px;
+  max-width:575px;
+  min-height:500px;
   position:relative;
-  background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+  background:url('/static/img/bg.jpg') no-repeat center;
   box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html{
@@ -23,7 +24,7 @@ a{color:inherit;text-decoration:none}
   height:100%;
   position:absolute;
   padding:90px 70px 50px 70px;
-  background:rgba(40,57,101,.9);
+  background:rgba(44,101,40,57%);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -43,7 +44,8 @@ a{color:inherit;text-decoration:none}
 }
 .login-html .tab,
 .login-form .group .label,
-.login-form .group .button{
+.login-form .group .button,
+.button{
   text-transform:uppercase;
 }
 .login-html .tab{
@@ -57,7 +59,7 @@ a{color:inherit;text-decoration:none}
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
   color:#fff;
-  border-color:#1161ee;
+  border-color: darkorange;
 }
 .login-form{
   min-height:345px;
@@ -70,13 +72,16 @@ a{color:inherit;text-decoration:none}
 }
 .login-form .group .label,
 .login-form .group .input,
-.login-form .group .button{
+.login-form .group .button,
+.button{
   width:100%;
   color:#fff;
   display:block;
+  margin-top:20px;
 }
 .login-form .group .input,
-.login-form .group .button{
+.login-form .group .button,
+.button{
   border:none;
   padding:15px 20px;
   border-radius:25px;
@@ -90,8 +95,9 @@ a{color:inherit;text-decoration:none}
   color:#aaa;
   font-size:12px;
 }
-.login-form .group .button{
-  background:#1161ee;
+.login-form .group .button,
+.button{
+  background:darkorange;
 }
 .login-form .group label .icon{
   width:15px;
@@ -143,8 +149,25 @@ a{color:inherit;text-decoration:none}
 .hr{
   height:2px;
   margin:60px 0 50px 0;
-  background:rgba(255,255,255,.2);
+  background: #aaaaaa;
 }
 .foot-lnk{
   text-align:center;
+}
+.textinput, .passwordinput, .emailinput{
+  width:100%;
+  color:#fff;
+  display:block;
+  border:none;
+  padding:15px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius:25px;
+  /*background:rgba(255,255,255,.1);*/
+}
+.requiredField {
+  width:100%;
+  color:#fff;
+  display:block;
+
 }

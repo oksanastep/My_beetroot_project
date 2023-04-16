@@ -63,9 +63,7 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Регістрація пройшла успішно!")
             return redirect("home")
-        messages.error(request, "Сталася помилка, невірна інформація")
     form = NewUserForm()
     return render(request=request, template_name="registration/register.html", context={"register_form": form})
 
