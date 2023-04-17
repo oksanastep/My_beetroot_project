@@ -1,12 +1,7 @@
 from django import forms
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, Submit, Field, Button
-from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import resolve_url
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from .models import Comment
 
 
 class NewUserForm(UserCreationForm):
@@ -22,3 +17,9 @@ class NewUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('author', 'text', 'date_created',)

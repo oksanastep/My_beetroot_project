@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
-from .models import Container, Waste
+from .models import Container, Waste, Comment
 from .forms import NewUserForm
 from django.db.models import Q
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+
 
 class HomePageView(TemplateView):
 
@@ -18,6 +19,11 @@ class HomePageView(TemplateView):
             'register_form': form
         }
         return render(request, template_name='home.html', context=context)
+
+
+class AboutUs(TemplateView):
+    def get(self, request):
+        return render(request, template_name='about_us.html')
 
 
 class SearchAlphabet(ListView):
@@ -86,7 +92,11 @@ def login_request(request):
     form = AuthenticationForm()
     return render(request=request, template_name="registration/login.html", context={"login_form": form})
 
+
 def logout_request(request):
     logout(request)
     messages.info(request, "Ви успішно вийшли з облікового запису.")
     return redirect("home")
+
+# def add_comment(request):
+#     

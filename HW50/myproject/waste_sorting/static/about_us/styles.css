@@ -1,0 +1,15 @@
+.about-us {
+    width: 100%;
+    text-align: left;
+    background-color: darkorange;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: white;
+}
+h1 {
+    text-align: center;
+}
+p {
+    font-size: 20px;
+    text-indent: 30px;
+}
