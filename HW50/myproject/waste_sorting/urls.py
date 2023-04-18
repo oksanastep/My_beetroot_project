@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView
 from .views import HomePageView, SearchResultsView, SearchContainer,  SearchAlphabet, register_request, login_request, \
-    logout_request, AboutUs
+    logout_request, AboutUs, CommentsView
 
 
 urlpatterns = [
@@ -13,5 +13,7 @@ urlpatterns = [
     path("register", register_request, name="register"),
     path("login", login_request, name="login"),
     path("logout", logout_request, name="logout"),
+
+    path("comments/", CommentsView.as_view(), name="comments")
 
 ]

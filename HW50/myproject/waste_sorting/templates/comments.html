@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/container.css' %}">
+<div class="container">
+    <h2 style="text-align:center">Comments</h2>
+    {% for comment in comments %}
+    <div class="waste_card">
+        <p>{{ comment.text|capfirst }}</p>
+    </div>
+{% endfor %}
+{{ form }}
+</div>
+{% endblock body %}

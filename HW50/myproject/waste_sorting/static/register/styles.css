@@ -156,7 +156,7 @@ a{color:inherit;text-decoration:none}
 }
 .textinput, .passwordinput, .emailinput{
   width:100%;
-  color:#fff;
+  color:#000;
   display:block;
   border:none;
   padding:15px 20px;

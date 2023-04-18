@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'search/container.css' %}">
 <div class="container">
     <h2 style="text-align:center">{{ container.type|capfirst }}</h2>
-    <p><img src="{{ container.img }} alt="{{ container.type }}" width=200 height=200 style="float:right"><i style="text-align:left">{{ container.description|linebreaks }}</i></p>
+    <p><img src="/{{ container.img }}" alt="{{ container.type }}" width=200 height=200 style="float:right"><i style="text-align:left">{{ container.description|linebreaks }}</i></p>
     {% for waste in object_list %}
     <div class="waste_card">
         <p>{{ waste.name|capfirst }}</p>

@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
-from .models import Container, Waste, Comment
-from .forms import NewUserForm
-from django.db.models import Q
-from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q
+from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, ListView, CreateView
+
+from .forms import NewUserForm, CommentForm
+from .models import Container, Waste, Comment
 
 
 class HomePageView(TemplateView):
@@ -98,5 +100,18 @@ def logout_request(request):
     messages.info(request, "Ви успішно вийшли з облікового запису.")
     return redirect("home")
 
-# def add_comment(request):
-#     
+
+class CommentsView(ListView, CreateView):
+    model = Comment
+    allow_empty = True
+    queryset = Comment.objects.all()
+    paginate_by = 5
+    paginate_orphans = 3
+    context_object_name = 'comments'
+    page_kwarg = "page"
+    ordering = ['-date_created']
+    template_name = 'comments.html'
+
+    object = Comment()
+    form_class = CommentForm
+    success_url = reverse_lazy('comments')
