@@ -3,6 +3,7 @@
   text-align: center;
   background-color: grey;
   color: white;
+  min-height: 300px;
 }
 .waste_card  {
     line-height: 1;

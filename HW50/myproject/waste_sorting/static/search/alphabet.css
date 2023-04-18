@@ -1,10 +1,12 @@
 .waste_column {
-      padding: 50px;
-      text-align: center;
-      background-color: grey;
-      color: white;
-    }
-.waste_card  {
+    padding: 50px;
+    text-align: center;
+    background-color: grey;
+    color: white;
+    min-height: 300px;
+}
+
+.waste_card {
     line-height: 1;
     display: inline-block;
     padding: 0.45em 0.6em;
@@ -14,4 +16,5 @@
     font-weight: 600;
     font-size: .95em;
     text-decoration: none;
+
 }

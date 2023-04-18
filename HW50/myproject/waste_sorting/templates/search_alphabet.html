@@ -1,8 +1,7 @@
 {% extends 'home.html' %}
-
 {% block body %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'search/alphabet.css' %}">
+    <link rel="stylesheet" href="{% static 'search/alphabet.css' %}">
 <div class="waste_column">
     <h2 style="text-align:center">Результати пошуку</h2>
         {% for waste in object_list%}
@@ -10,8 +9,7 @@
         <p>{{waste.name|title}}</p>
         <div class="waste_card">
             <p>{% for container in waste.container.all %}{{ container|title }} {% endfor %}</p>
-    </div>
+        </div>
 {% endfor %}
 </div>
-
 {% endblock body %}
