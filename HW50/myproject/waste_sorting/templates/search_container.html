@@ -1,29 +1,8 @@
 {% extends 'home.html' %}
 
 {% block body %}
-<style>
-    .container {
-        padding: 50px;
-        background-color: grey;
-        color: white;
-    }
-
-    .waste_card {
-        list-style-type: circle;
-        line-height: 1;
-        display: block;
-        text-align: center;
-        padding: 0.45em 0.6em;
-        margin: 0 0.4em 0.475em 0;
-        background: #f07300;
-        color: #fff;
-        font-weight: 600;
-        font-size: .95em;
-        text-decoration: none;
-    }
-
-</style>
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/container.css' %}">
 <div class="container">
     <h2 style="text-align:center">{{ container.type|capfirst }}</h2>
     <p><img src="{{ container.img }} alt="{{ container.type }}" width=200 height=200 style="float:right"><i style="text-align:left">{{ container.description|linebreaks }}</i></p>

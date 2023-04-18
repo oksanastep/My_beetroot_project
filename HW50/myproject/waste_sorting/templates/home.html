@@ -63,7 +63,7 @@
             <img src="{{ container.img }}" alt="{{ container.type }}" style="width: 100%">
                 <div class="container">
                 <p>
-                    <a class="button" href="{% url 'search_container' %}?q={{ container.id }}">{{ container.type|title }}</a>
+                    <a class="button" href="{% url 'search_container' %}?q={{ container.id }}">{{ container.type|capfirst }}</a>
                 </p>
                 </div>
     </div>

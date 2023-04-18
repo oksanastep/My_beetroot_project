@@ -1,25 +1,8 @@
 {% extends 'home.html' %}
 
 {% block body %}
-<style>
-    .waste_column {
-      padding: 50px;
-      text-align: center;
-      background-color: grey;
-      color: white;
-    }
-    .waste_card  {
-        line-height: 1;
-        display: inline-block;
-        padding: 0.45em 0.6em;
-        margin: 0 0.4em 0.475em 0;
-        background: #f07300;
-        color: #fff;
-        font-weight: 600;
-        font-size: .95em;
-        text-decoration: none;
-    }
-</style>
+% load static %}
+<link rel="stylesheet" href="{% static 'search/results.css' %}">
 <div class="waste_column">
     <h2 style="text-align:center">Результати пошуку</h2>
      {% for waste in object_list%}

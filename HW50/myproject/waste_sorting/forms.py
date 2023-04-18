@@ -22,4 +22,4 @@ class NewUserForm(UserCreationForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('author', 'text', 'date_created',)
+        fields = ('author', 'text', )
