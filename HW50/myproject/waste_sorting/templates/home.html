@@ -20,6 +20,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
+
         <ul class="navbar-nav mr-auto">
           {% if user.is_authenticated %}
 
@@ -60,7 +61,7 @@
     {% for container in containers %}
     <div class="column">
         <p class="waste_form">
-            <img src="{{ container.img }}" alt="{{ container.type }}" style="width: 100%">
+            <img class="image" src="{{ container.img }}" alt="{{ container.type }}">
                 <div class="container">
                 <p>
                     <a class="button" href="{% url 'search_container' %}?q={{ container.id }}">{{ container.type|capfirst }}</a>
@@ -70,22 +71,14 @@
     {% endfor %}
 </div>
 {% endblock %}
-{#<div class="footer-basic">#}
-{#    <footer>#}
-{#        <div class="social">#}
-{#            <a href={% url 'login' %}><img src="/static/img/user.png" alt="user" style="width: 100%; height: 100%"></img></a>#}
-{#            <a href={% url 'about_us' %}><img src="/static/img/information.png" alt="info" style="width: 100%; height: 100%"></img></a>#}
-{#            <a href='#'><img src="/static/img/comment.png" alt="comment" style="width: 100%; height: 100%"></img></a>#}
-{#        </div>#}
-{#    </footer>#}
-{#</div>#}
 </body>
 <div class="footer-basic">
     <footer>
         <div class="social">
-            <a href={% url 'login' %}><img src="/static/img/user.png" alt="user" style="width: 100%; height: 100%"></img></a>
-            <a href={% url 'about_us' %}><img src="/static/img/information.png" alt="info" style="width: 100%; height: 100%"></img></a>
-            <a href='#'><img src="/static/img/comment.png" alt="comment" style="width: 100%; height: 100%"></img></a>
+            <a href={% url 'home' %}><img class="icon" src="/static/img/home.png" alt="home" ></img></a>
+            <a href={% url 'about_us' %}><img class="icon" src="/static/img/info.png" alt="info" ></img></a>
+            <a href={% url 'comments' %}><img class="icon" src="/static/img/chat.png" alt="comment"></img></a>
         </div>
     </footer>
+</div>
 </html>

@@ -3,12 +3,12 @@
 {% load static %}
     <link rel="stylesheet" href="{% static 'search/alphabet.css' %}">
 <div class="waste_column">
-    <h2 style="text-align:center">Результати пошуку</h2>
+    <h2>Результати пошуку</h2>
         {% for waste in object_list%}
         <br>
         <p>{{waste.name|title}}</p>
         <div class="waste_card">
-            <p>{% for container in waste.container.all %}{{ container|title }} {% endfor %}</p>
+            <p>{% for container in waste.container.all %}{{ container|capfirst }} {% endfor %}
         </div>
 {% endfor %}
 </div>

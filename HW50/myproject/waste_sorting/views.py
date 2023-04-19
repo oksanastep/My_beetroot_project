@@ -5,6 +5,8 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from .forms import NewUserForm, CommentForm
 from .models import Container, Waste, Comment
@@ -115,3 +117,14 @@ class CommentsView(ListView, CreateView):
     object = Comment()
     form_class = CommentForm
     success_url = reverse_lazy('comments')
+
+    def form_valid(self, form):
+        user = self.request.user
+        comment = form.save(commit=False)
+        comment.author = user
+        self.object = comment.save()
+        return super().form_valid(form)
+
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)

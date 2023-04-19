@@ -1,9 +1,10 @@
 .about-us {
+    padding: 50px;
     width: 100%;
     text-align: left;
-    background-color: darkorange;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    background-color: #455655;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: white;
 }
 h1 {

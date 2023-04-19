@@ -1,7 +1,7 @@
 .waste_column {
   padding: 50px;
   text-align: center;
-  background-color: grey;
+  background-color:  #455655;
   color: white;
   min-height: 300px;
 }
@@ -10,9 +10,12 @@
     display: inline-block;
     padding: 0.45em 0.6em;
     margin: 0 0.4em 0.475em 0;
-    background: #f07300;
+    background: #60bdaf;
     color: #fff;
     font-weight: 600;
     font-size: .95em;
     text-decoration: none;
+}
+h2 {
+    text-align:center;
 }

@@ -1,8 +1,9 @@
 from django import forms
+from crispy_forms.helper import FormHelper
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .models import Comment
+from crispy_forms.layout import Layout, Fieldset, Submit, Field, Button
 
 
 class NewUserForm(UserCreationForm):
@@ -26,6 +27,16 @@ class NewUserForm(UserCreationForm):
 
 
 class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = ''
+
+        self.helper.add_input(Submit('submit', 'Send'))
     class Meta:
         model = Comment
-        fields = ('text', )
+        fields = ['text']
+        labels = {'text': ''}
+        widgets = {
+            'text': forms.TextInput()
+        }

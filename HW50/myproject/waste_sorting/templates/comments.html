@@ -1,15 +1,21 @@
 {% extends 'home.html' %}
-
 {% block body %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'search/container.css' %}">
-<div class="container">
+<link rel="stylesheet" href="{% static 'comments/styles.css' %}">
+<div class="container-comment">
     <h2 style="text-align:center">Comments</h2>
-    {% for comment in comments %}
-    <div class="waste_card">
-        <p>{{ comment.text|capfirst }}</p>
+    <div class="message-container">
+        {% for comment in comments %}
+        <div class="message-wrapper">
+            <div class="message-header">
+                <p class="author">{{ comment.author }}</p>
+                <p class="date-created">{{ comment.date_created|date:"Y-m-d H:i" }}</p>
+            </div>
+            <p class="message-text">{{ comment.text }}</p>
+        </div>
+        {% endfor %}
     </div>
-{% endfor %}
-{{ form }}
+{% load crispy_forms_tags %}
+{% crispy form %}
 </div>
 {% endblock body %}

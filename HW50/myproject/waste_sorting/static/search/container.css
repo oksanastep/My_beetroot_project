@@ -1,7 +1,9 @@
 .container {
         padding: 50px;
-        background-color: grey;
+        background-color:  #455655;
         color: white;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
 .waste_card {
@@ -11,9 +13,15 @@
     text-align: center;
     padding: 0.45em 0.6em;
     margin: 0 0.4em 0.475em 0;
-    background: #f07300;
+    background: #60bdaf;
     color: #fff;
     font-weight: 600;
     font-size: .95em;
     text-decoration: none;
+}
+.image1 {
+    float:right;
+}
+i {
+    text-align:left;
 }

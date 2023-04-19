@@ -1,0 +1,84 @@
+.container-comment {
+    padding: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    min-height: 450px;
+    width: 100%;
+    height: 100%;
+}
+h2 {
+    text-align:center;
+}
+.message-container {
+    background:rgba(0, 0, 0, .5);
+    min-height: 360px;
+    height: 40%;
+    width: 80%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.message-wrapper {
+    background: #455655;
+    width: 90%;
+    min-width: 300px;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+.mine{
+    align-self: start;
+}
+
+.other {
+    align-self: end;
+}
+
+.message-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.message-header p {
+    display: inline-block;
+    font-size: 0.8em;
+}
+.message-text {
+    color: white;
+}
+.author {
+    color: #60bdaf;
+}
+
+.date-created {
+    color: white;
+}
+form  {
+    width: 900px;
+    height: 50px;
+    display:inline-block;
+    margin: 5px;
+}
+
+form .send{
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2em 0;
+    margin: 5px;
+}
+

@@ -4,7 +4,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'search/results.css' %}">
 <div class="waste_column">
-    <h2 style="text-align:center">Результати пошуку</h2>
+    <h2>Результати пошуку</h2>
      {% for waste in object_list%}
     <br>
     <p>{{waste.name|capfirst}}</p>

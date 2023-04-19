@@ -9,9 +9,6 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import sys
-sys.stdin.reconfigure(encoding='utf-8')
-sys.stdout.reconfigure(encoding='utf-8')
 from pathlib import Path
 import environ
 from environ import Env
@@ -36,6 +33,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
+LOGIN_URL = "login"
 
 INSTALLED_APPS = [
     'waste_sorting',
@@ -112,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'uk'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 

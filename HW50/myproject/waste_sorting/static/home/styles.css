@@ -57,7 +57,7 @@ h2 {
 
 .alphabet a {
     color: #fff;
-    background: darkgreen;
+    background: #455655;
     display: inline-block;
     margin: 0 0.2375em 0.52em 0;
     text-decoration: none;
@@ -108,7 +108,7 @@ h2 {
     display: inline-block;
     padding: 8px;
     color: white;
-    background-color: darkorange;
+    background-color: #60bdaf;
     text-align: center;
     text-decoration: none;
     /*cursor: pointer;*/
@@ -121,8 +121,8 @@ h2 {
     background: lightblue;
 }
 .btn-primary {
-    background: darkorange;
-    border-color: darkorange;
+    background: #60bdaf;
+    border-color: #60bdaf;
 }
 .footer-basic{
   padding:30px 0;
@@ -174,4 +174,12 @@ h2 {
 
 .footer-basic .social > a:hover {
   opacity:0.9;
+}
+.image {
+    width: 100%;
+}
+.icon {
+    width: 100%;
+    height: 100%;
+
 }
