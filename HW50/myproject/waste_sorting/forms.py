@@ -12,6 +12,12 @@ class NewUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ("username", "email", "password1", "password2")
+        labels = {
+            "username": "Ім'я користувача",
+            "email": "Електронна пошта",
+            "password1": "Пароль",
+            "password2": "Повторіть пароль",
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -32,7 +38,8 @@ class CommentForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_action = ''
 
-        self.helper.add_input(Submit('submit', 'Send'))
+        self.helper.add_input(Submit('submit', 'Відправити'))
+
     class Meta:
         model = Comment
         fields = ['text']
