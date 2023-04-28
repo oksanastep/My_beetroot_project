@@ -8,7 +8,7 @@ from django.views.generic import TemplateView, ListView, CreateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
-from .forms import NewUserForm, CommentForm
+from .forms import LoginUserForm, NewUserForm, CommentForm
 from .models import Container, Waste, Comment
 
 
@@ -80,26 +80,24 @@ def register_request(request):
 
 def login_request(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+        form = LoginUserForm(request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get("username")
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f"Тепер Ви зареєстровані як {username}.")
                 return redirect("home")
             else:
                 messages.error(request, "Невірний логін або пароль.")
         else:
             messages.error(request, "Невірний логін або пароль.")
-    form = AuthenticationForm()
+    form = LoginUserForm()
     return render(request=request, template_name="registration/login.html", context={"login_form": form})
 
 
 def logout_request(request):
     logout(request)
-    messages.info(request, "Ви успішно вийшли з облікового запису.")
     return redirect("home")
 
 

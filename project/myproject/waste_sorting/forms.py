@@ -1,9 +1,16 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from .models import Comment
-from crispy_forms.layout import Layout, Fieldset, Submit, Field, Button
+from crispy_forms.layout import Submit
+
+
+class LoginUserForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].label = "Ім'я клристувача"
+        self.fields["password"].label = "Пароль"
 
 
 class NewUserForm(UserCreationForm):
@@ -12,15 +19,13 @@ class NewUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ("username", "email", "password1", "password2")
-        labels = {
-            "username": "Ім'я користувача",
-            "email": "Електронна пошта",
-            "password1": "Пароль",
-            "password2": "Повторіть пароль",
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['username'].label = "Ім'я користувача"
+        self.fields['email'].label = "Електронна пошта"
+        self.fields['password1'].label = "Введіть пароль"
+        self.fields['password2'].label = "Повторіть пароль"
         for fieldname in ['username', 'password1', 'password2']:
             self.fields[fieldname].help_text = ''
 

@@ -9,7 +9,7 @@
     <br>
     <p>{{waste.name|capfirst}}</p>
     <div class="waste_card">
-        <p>{% for container in waste.container.all %}{{ container|capfirst }}{% endfor %}</p>
+        <p>{% for container in waste.container.all %}  {{ container|capfirst }}{% endfor %}</p>
     </div>
 {% endfor %}
 </div>
